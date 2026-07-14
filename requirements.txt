@@ -1,0 +1,8 @@
+numpy
+matplotlib
+pandas
+scipy
+sounddevice
+imageio
+can
+cantools
