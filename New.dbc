@@ -1,0 +1,125 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ VCU4_C_MainContactor : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VCU4_St_SelfCheck : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VCU4_St_Ready : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ VCU4_St_Gears : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VCU4_F_VCUFaultState : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VCU4_F_TCUFaultState : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VCU4_St_DriverSeat : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VCU4_St_PTO : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VCU4_N_SysFaultCode : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VCU4_N_TCUFaultCode : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VCU4_N_RollingCounter : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2565866755 TCU_ETC2: 8 Vector__XXX
+ SG_ ETC2_St_TransCurrentGear : 24|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ETC2_St_TransSelectedGear : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2565866992 SCU_Msg1: 8 Vector__XXX
+ SG_ SCU1_St_GearsKey : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2365524719 VCU_VMS_Msg1: 8 Vector__XXX
+ SG_ VMS1_N_MotorControlMode : 4|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ VMS1_N_ReqMotorTorque : 8|16@1+ (1,-3000) [-3000|3000] "Nm" Vector__XXX
+ SG_ VMS1_N_ReqMotorSpeed : 24|16@1+ (0.125,0) [0|8191.875] "rpm" Vector__XXX
+ SG_ VMS1_N_AcceleratorPedalPercent : 48|8@1+ (1,0) [0|100] "%" Vector__XXX
+ SG_ VMS1_St_AcceleratorPedalValid : 57|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS1_St_BrakePedalValid : 58|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 2365529808 MCU_Msg1: 8 Vector__XXX
+ SG_ MCU1_N_MotorSpeed : 0|16@1+ (0.125,0) [0|8191.875] "rpm" Vector__XXX
+ SG_ MCU1_N_MotorTorque : 16|16@1+ (1,-3000) [-3000|3000] "Nm" Vector__XXX
+ SG_ MCU1_St_MCUMode : 48|2@1+ (1,0) [0|3] "" Vector__XXX
+
+BO_ 2565931472 VCU_Msg4: 8 Vector__XXX
+ SG_ VCU4_V_VehicleSpeed : 8|16@1+ (0.00390625,0) [0|255] "km/h" Vector__XXX
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 3221225472 VCU4_C_MainContactor "HV Main Contactor Command";
+CM_ SG_ 3221225472 VCU4_St_SelfCheck "VCU SelfCheck";
+CM_ SG_ 3221225472 VCU4_St_Ready "Vehicle Ready";
+CM_ SG_ 3221225472 VCU4_St_Gears "Vehicle current gear position";
+CM_ SG_ 3221225472 VCU4_F_VCUFaultState "VCU System Failure";
+CM_ SG_ 3221225472 VCU4_F_TCUFaultState "Transmission System Failure";
+CM_ SG_ 3221225472 VCU4_St_DriverSeat "Driver Seat Occupancy State";
+CM_ SG_ 3221225472 VCU4_St_PTO "PTO Active State";
+CM_ SG_ 3221225472 VCU4_N_SysFaultCode "VCU System Fault Code";
+CM_ SG_ 3221225472 VCU4_N_TCUFaultCode "TCU System Fault Code";
+CM_ SG_ 3221225472 VCU4_N_RollingCounter "RollingCounter";
+CM_ SG_ 2565866755 ETC2_St_TransCurrentGear "TCU Current Gear";
+CM_ SG_ 2565866755 ETC2_St_TransSelectedGear "TCU Selected Gear";
+CM_ SG_ 2565866992 SCU1_St_GearsKey "Gear Key";
+CM_ SG_ 2365524719 VMS1_N_MotorControlMode "MCU Control Mode Request";
+CM_ SG_ 2365524719 VMS1_N_ReqMotorTorque "Requested Torque";
+CM_ SG_ 2365524719 VMS1_N_ReqMotorSpeed "Requested Speed";
+CM_ SG_ 2365524719 VMS1_N_AcceleratorPedalPercent "Accelerator Pedal Position";
+CM_ SG_ 2365524719 VMS1_St_AcceleratorPedalValid "Accelerator Pedal Position Valid";
+CM_ SG_ 2365524719 VMS1_St_BrakePedalValid "Brake Pedal Position Valid";
+CM_ SG_ 2365529808 MCU1_N_MotorSpeed "Motor Actual Speed";
+CM_ SG_ 2365529808 MCU1_N_MotorTorque "Motor Actual Torque";
+CM_ SG_ 2365529808 MCU1_St_MCUMode "MCU Current Control Mode";
+CM_ SG_ 2565931472 VCU4_V_VehicleSpeed "Vehicle Speed";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_ "BusType" "CAN";
+BA_ "GenMsgCycleTime" BO_ 2565866755 100;
+BA_ "GenMsgCycleTime" BO_ 2565866992 100;
+BA_ "GenMsgCycleTime" BO_ 2365524719 10;
+BA_ "GenMsgCycleTime" BO_ 2365529808 10;
+BA_ "GenMsgCycleTime" BO_ 2565931472 100;
+VAL_ 3221225472 VCU4_C_MainContactor 0 "Open" 1 "Close" 2 "Reserved" 3 "Reserved" ;
+VAL_ 3221225472 VCU4_St_SelfCheck 0 "Ongoing" 1 "Success" 2 "Fail" 3 "Reserved" ;
+VAL_ 3221225472 VCU4_St_Ready 0 "Waiting" 1 "Ready" 2 "Reserved" 3 "Reserved" ;
+VAL_ 3221225472 VCU4_St_Gears 124 "R" 125 "N" 126 "1" 127 "2" 128 "3" 129 "4" 130 "5" 131 "6" 132 "7" 133 "8" 134 "9" 135 "10" 136 "11" 137 "12" ;
+VAL_ 3221225472 VCU4_St_DriverSeat 0 " Occupied" 1 " Not Occupied" ;
+VAL_ 3221225472 VCU4_St_PTO 0 " Not Active" 1 "Active" ;
+VAL_ 2565866755 ETC2_St_TransCurrentGear 124 "R" 125 "N" 126 "1" 127 "2" 128 "3" 129 "4" 130 "5" 131 "6" 132 "7" 133 "8" 134 "9" 135 "10" 136 "11" 137 "12" ;
+VAL_ 2565866755 ETC2_St_TransSelectedGear 124 "R" 125 "N" 126 "1" 127 "2" 128 "3" 129 "4" 130 "5" 131 "6" 132 "7" 133 "8" 134 "9" 135 "10" 136 "11" 137 "12" ;
+VAL_ 2565866992 SCU1_St_GearsKey 0 "N" 43 "R" 99 "M-" 100 "A/M" 101 "M+" 193 "D" 251 "P" ;
+VAL_ 2365524719 VMS1_N_MotorControlMode 0 "Reserved" 1 "Speed Control Mode" 2 "Torque Control Mode" 3 "Sleep Control Mode" ;
+VAL_ 2365524719 VMS1_St_AcceleratorPedalValid 0 "Invalid" 1 "Valid" ;
+VAL_ 2365524719 VMS1_St_BrakePedalValid 0 "Invalid" 1 "Valid" ;
+VAL_ 2365529808 MCU1_St_MCUMode 0 "Reserved" 1 "Speed Control Mode" 2 "Torque Control Mode" 3 " Tracking Mode" ;
+
