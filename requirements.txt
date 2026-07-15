@@ -6,3 +6,4 @@ sounddevice
 imageio
 can
 cantools
+plotly
