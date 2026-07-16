@@ -1,0 +1,297 @@
+VERSION "WangHu V1.0"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: VCU MCU TCU Test
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ VMS1_St_DisconnectLowVoltage : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS1_St_ActiveDischarge : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS1_N_MotorControlMode : 0|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ VMS1_N_ReqMotorTorque : 0|16@1+ (1,-3000) [-3000|3000] "Nm" Vector__XXX
+ SG_ VMS1_N_ReqMotorSpeed : 0|16@1+ (0.125,0) [0|8191.875] "rpm" Vector__XXX
+ SG_ VMS1_St_MotorEnable : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS1_St_AcceleratorPedalValid : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS1_St_Cruise : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS1_N_RollingCounter : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ VMS3_Pre_FrontBrakeGasholder : 0|8@1+ (5,0) [0|1275] "kPa" Vector__XXX
+ SG_ VMS3_Pre_RearBrakeGasholder : 0|8@1+ (5,0) [0|1275] "kPa" Vector__XXX
+ SG_ VMS3_St_GearsKey : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VMS3_C_DynamicEcoModel : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ VMS3_U_pct_BrakePed : 0|8@1+ (0.4,0) [0|100] "%" Vector__XXX
+ SG_ ETC2_St_TransSelectedGear : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ETC2_mmd01_SelectPosSen : 0|16@1- (1,0) [0|10000] "d01mm" Vector__XXX
+ SG_ ETC2_mmd01_ShiftPosSen : 0|16@1- (1,0) [0|10000] "d01mm" Vector__XXX
+ SG_ TCU1_N_ReqMotorSpeed : 0|16@1+ (0.125,0) [0|8191.875] "rpm" Vector__XXX
+ SG_ TCU1_Trq_ReqMotorTorque : 0|16@1+ (1,-3000) [-3000|3000] "Nm" Vector__XXX
+ SG_ TCU1_mmd01_RngboxPosSen : 0|16@1+ (1,0) [0|10000] "d01mm" Vector__XXX
+ SG_ TCU2_St_ShiftMode : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TCU2_St_EPMode : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ TCU2_N_CharacterDisplayControl : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ TCU2_St_AlarmLightStates : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ TCU2_St_PTO : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU1_N_MCUTemperature : 0|8@1+ (1,-40) [-40|215] "degC" Vector__XXX
+ SG_ MCU1_N_MotorTemperature : 0|8@1+ (1,-40) [-40|215] "degC" Vector__XXX
+ SG_ MCU1_St_MCUErrorLevel : 0|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ MCU1_St_MCUReady : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU1_St_ActiveDischargeComplete : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU1_St_MotorEnableCloseRequst : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU1_St_Cruise : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU1_N_RollingCounter : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ MCU2_N_MaxOutTrqAllowed : 0|16@1+ (1,-3000) [-3000|3000] "Nm" Vector__XXX
+ SG_ MCU2_N_MaxGenTrqAllowed : 0|16@1+ (1,-3000) [-3000|3000] "Nm" Vector__XXX
+ SG_ MCU3_N_MotorTotalFaults : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ MCU3_St_PowerReduceOperation : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_N_SoftwareVersion : 0|8@1+ (0.1,0) [0|25.5] "" Vector__XXX
+ SG_ MCU4_St_MCUSelfCheck : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ MCU4_F_OverVoltageAlarm : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_F_UnderVoltageAlarm : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_F_OverCurrentAlarm : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_T_MCUTempAlarm : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_T_MotorTempAlarm : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_F_MCUCANAlarm : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_F_MCU : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU4_N_SystemFaultCode : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 2365524719 VCU_VMS_Msg1: 8 VCU
+ SG_ VMS1_St_Gear : 0|2@1+ (1,0) [0|3] ""  MCU,TCU
+ SG_ VMS1_N_AcceleratorPedalPercent : 48|8@1+ (1,0) [0|100] "%"  MCU,TCU
+ SG_ VMS1_St_BrakePedalValid : 58|1@1+ (1,0) [0|1] ""  MCU,TCU
+
+BO_ 2565866755 TCU_ETC2: 8 TCU
+ SG_ ETC2_St_TransCurrentGear : 24|8@1+ (1,0) [0|255] ""  VCU
+
+BO_ 2566873603 TCU_Msg1: 8 TCU
+ SG_ TCU1_St_MotorCtrlMode : 0|2@1+ (1,0) [0|3] ""  VCU
+
+BO_ 2566873091 TCU_Msg2: 8 TCU
+ SG_ TCU2_kmph_VehSpeed : 0|16@1+ (0.00390625,0) [0|255] "km/h"  VCU
+
+BO_ 2365529808 MCU_Msg1: 8 MCU
+ SG_ MCU1_St_MCUMode : 48|3@1+ (1,0) [0|3] ""  VCU
+ SG_ MCU1_N_MotorSpeed : 0|16@1+ (0.125,0) [0|8191.875] "rpm"  VCU
+ SG_ MCU1_N_MotorTorque : 16|16@1+ (1,-3000) [-3000|3000] "Nm"  VCU
+ SG_ MCU1_St_MotorRotationDir : 54|2@1+ (1,0) [0|3] ""  VCU
+
+BO_ 2365530064 MCU_Msg2: 8 MCU
+ SG_ MCU2_N_DCCurrent : 0|16@1+ (1,-1000) [-1000|3000] "A"  VCU
+ SG_ MCU2_N_DCVoltage : 16|16@1+ (1,0) [0|3000] "V"  VCU
+
+BO_ 2365530320 MCU_Msg3: 8 MCU
+ SG_ MCU3_N_OutputPower : 40|16@1+ (0.5,-1000) [-1000|1000] "kW"  VCU
+
+
+
+CM_ BO_ 3221225472 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 3221225472 VMS1_St_DisconnectLowVoltage "Sleep Request";
+CM_ SG_ 3221225472 VMS1_St_ActiveDischarge "Active Discharge Request";
+CM_ SG_ 3221225472 VMS1_N_MotorControlMode "MCU Control Mode Request";
+CM_ SG_ 3221225472 VMS1_N_ReqMotorTorque "Requested Torque";
+CM_ SG_ 3221225472 VMS1_N_ReqMotorSpeed "Requested Speed";
+CM_ SG_ 3221225472 VMS1_St_MotorEnable "MCU  Enable";
+CM_ SG_ 3221225472 VMS1_St_AcceleratorPedalValid "Accelerator Pedal Position Valid";
+CM_ SG_ 3221225472 VMS1_St_Cruise "Cruise State";
+CM_ SG_ 3221225472 VMS1_N_RollingCounter "Rolling Counter";
+CM_ SG_ 3221225472 VMS3_Pre_FrontBrakeGasholder "Front Brake Gasholder Pressure";
+CM_ SG_ 3221225472 VMS3_Pre_RearBrakeGasholder "Rear Brake Gasholder Pressure";
+CM_ SG_ 3221225472 VMS3_St_GearsKey "Gear Lever Position";
+CM_ SG_ 3221225472 VMS3_C_DynamicEcoModel "Drive Mode";
+CM_ SG_ 3221225472 VMS3_U_pct_BrakePed "Brake Pedal Position";
+CM_ SG_ 3221225472 ETC2_St_TransSelectedGear "TCU Selected Gear";
+CM_ SG_ 3221225472 ETC2_mmd01_SelectPosSen "Selector Position";
+CM_ SG_ 3221225472 ETC2_mmd01_ShiftPosSen "Shift Position";
+CM_ SG_ 3221225472 TCU1_N_ReqMotorSpeed "Requested Speed";
+CM_ SG_ 3221225472 TCU1_Trq_ReqMotorTorque "Requested Torque";
+CM_ SG_ 3221225472 TCU1_mmd01_RngboxPosSen "AuxBox Position";
+CM_ SG_ 3221225472 TCU2_St_ShiftMode "Shift Mode";
+CM_ SG_ 3221225472 TCU2_St_EPMode "Drive Mode";
+CM_ SG_ 3221225472 TCU2_N_CharacterDisplayControl "TCU Fault Code";
+CM_ SG_ 3221225472 TCU2_St_AlarmLightStates "TCU Alarm Light State";
+CM_ SG_ 3221225472 TCU2_St_PTO "PTO Active State";
+CM_ SG_ 3221225472 MCU1_N_MCUTemperature "Inverter Temperature";
+CM_ SG_ 3221225472 MCU1_N_MotorTemperature "Motor Temperature";
+CM_ SG_ 3221225472 MCU1_St_MCUErrorLevel "MCU Fault Level";
+CM_ SG_ 3221225472 MCU1_St_MCUReady "MCU Ready State";
+CM_ SG_ 3221225472 MCU1_St_ActiveDischargeComplete "MCU  Active Discharge State";
+CM_ SG_ 3221225472 MCU1_St_MotorEnableCloseRequst "MCU Shutdown Request";
+CM_ SG_ 3221225472 MCU1_St_Cruise "Cruise State";
+CM_ SG_ 3221225472 MCU1_N_RollingCounter "Rolling Counter";
+CM_ SG_ 3221225472 MCU2_N_MaxOutTrqAllowed "Maximum Dirve Allow Torque";
+CM_ SG_ 3221225472 MCU2_N_MaxGenTrqAllowed "Maximum Regen Allow Torque";
+CM_ SG_ 3221225472 MCU3_N_MotorTotalFaults "MCU Total Fault Number";
+CM_ SG_ 3221225472 MCU3_St_PowerReduceOperation "Power Reduce State";
+CM_ SG_ 3221225472 MCU4_N_SoftwareVersion "MCU SW Version";
+CM_ SG_ 3221225472 MCU4_St_MCUSelfCheck "MCU SelfCheck State";
+CM_ SG_ 3221225472 MCU4_F_OverVoltageAlarm "Inverter Over Voltage Alarm";
+CM_ SG_ 3221225472 MCU4_F_UnderVoltageAlarm "Inverter Under Voltage Alarm";
+CM_ SG_ 3221225472 MCU4_F_OverCurrentAlarm "Inverter Over Current Alarm";
+CM_ SG_ 3221225472 MCU4_T_MCUTempAlarm "Inverter OverTemperature Alarm";
+CM_ SG_ 3221225472 MCU4_T_MotorTempAlarm "Motor OverTemperature Alarm";
+CM_ SG_ 3221225472 MCU4_F_MCUCANAlarm "MCU CAN Error";
+CM_ SG_ 3221225472 MCU4_F_MCU "MCU Error State";
+CM_ SG_ 3221225472 MCU4_N_SystemFaultCode "MCU System Fault Code";
+CM_ SG_ 2365524719 VMS1_St_Gear "MCU Target Gear";
+CM_ SG_ 2365524719 VMS1_N_AcceleratorPedalPercent "Accelerator Pedal Position";
+CM_ SG_ 2365524719 VMS1_St_BrakePedalValid "Brake Pedal Position Valid";
+CM_ SG_ 2565866755 ETC2_St_TransCurrentGear "TCU Current Gear";
+CM_ SG_ 2566873603 TCU1_St_MotorCtrlMode "Motor Control Mode Request";
+CM_ SG_ 2566873091 TCU2_kmph_VehSpeed "Vehicle Speed";
+CM_ SG_ 2365529808 MCU1_St_MCUMode "MCU Current Control Mode";
+CM_ SG_ 2365529808 MCU1_N_MotorSpeed "Motor Actual Speed";
+CM_ SG_ 2365529808 MCU1_N_MotorTorque "Motor Actual Torque";
+CM_ SG_ 2365529808 MCU1_St_MotorRotationDir "Motor Rotation Direction";
+CM_ SG_ 2365530064 MCU2_N_DCCurrent "DC Bus Input Current";
+CM_ SG_ 2365530064 MCU2_N_DCVoltage "DC Bus Input Voltage";
+CM_ SG_ 2365530320 MCU3_N_OutputPower "MCU Acutal Output Power";
+BA_DEF_ EV_  "GenEnvIsGeneratedDsp" ENUM  "No","Yes";
+BA_DEF_ EV_  "GenEnvAutoGenCtrl" ENUM  "No","Yes";
+BA_DEF_ EV_  "GenEnvMsgOffset" INT 0 2147483647;
+BA_DEF_ EV_  "GenEnvMsgName" STRING ;
+BA_DEF_ EV_  "GenEnvIsGeneratedSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigTimeoutValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigInactiveValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigMinValue" INT 0 2147483647;
+BA_DEF_ SG_  "GenSigMaxValue" INT 0 2147483647;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "cycle";
+BA_DEF_ SG_  "GenSigEnvVarType" ENUM  "int","float","undef";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 0;
+BA_DEF_ BO_  "NmMessage" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cycle";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 127;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "GenEnvVarPrefix" STRING ;
+BA_DEF_  "GenEnvVarEndingSnd" STRING ;
+BA_DEF_  "GenEnvVarEndingDsp" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v3_0" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_3" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v3_1" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_2" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_1" INT 0 0;
+BA_DEF_DEF_  "GenEnvIsGeneratedDsp" "No";
+BA_DEF_DEF_  "GenEnvAutoGenCtrl" "No";
+BA_DEF_DEF_  "GenEnvMsgOffset" 0;
+BA_DEF_DEF_  "GenEnvMsgName" "";
+BA_DEF_DEF_  "GenEnvIsGeneratedSnd" "No";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigTimeoutValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigMinValue" 0;
+BA_DEF_DEF_  "GenSigMaxValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "cycle";
+BA_DEF_DEF_  "GenSigEnvVarType" "undef";
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "NmMessage" "No";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+BA_DEF_DEF_  "GenMsgSendType" "cycle";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "GenEnvVarPrefix" "PE";
+BA_DEF_DEF_  "GenEnvVarEndingSnd" "_Ps";
+BA_DEF_DEF_  "GenEnvVarEndingDsp" "_Pd";
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v3_0" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_3" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v3_1" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_2" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_1" 0;
+BA_ "DBName" "CanMatrix";
+BA_ "GenMsgCycleTime" BO_ 2365524719 10;
+BA_ "VFrameFormat" BO_ 2365524719 1;
+BA_ "GenMsgCycleTime" BO_ 2565866755 100;
+BA_ "VFrameFormat" BO_ 2565866755 1;
+BA_ "GenMsgCycleTime" BO_ 2566873603 10;
+BA_ "VFrameFormat" BO_ 2566873603 1;
+BA_ "GenMsgCycleTime" BO_ 2566873091 50;
+BA_ "VFrameFormat" BO_ 2566873091 1;
+BA_ "GenMsgCycleTime" BO_ 2365529808 10;
+BA_ "VFrameFormat" BO_ 2365529808 1;
+BA_ "GenMsgCycleTime" BO_ 2365530064 100;
+BA_ "VFrameFormat" BO_ 2365530064 1;
+BA_ "GenMsgCycleTime" BO_ 2365530320 100;
+BA_ "VFrameFormat" BO_ 2365530320 1;
+VAL_ 3221225472 VMS1_St_DisconnectLowVoltage 0 "No Request" 1 "Request" ;
+VAL_ 3221225472 VMS1_St_ActiveDischarge 0 "No Request" 1 "Request" ;
+VAL_ 3221225472 VMS1_N_MotorControlMode 0 "Reserved" 1 "Speed Control Mode" 2 "Torque Control Mode" 3 "Sleep Control Mode" ;
+VAL_ 3221225472 VMS1_St_MotorEnable 0 "Disable" 1 "Enable" ;
+VAL_ 3221225472 VMS1_St_AcceleratorPedalValid 0 "Invalid" 1 "Valid" ;
+VAL_ 3221225472 VMS1_St_Cruise 0 " No Acitve" 1 " Active" ;
+VAL_ 3221225472 VMS3_St_GearsKey 253 "M" 252 "D" 249 " M+" 247 " M-" 223 "R" 125 "N" ;
+VAL_ 3221225472 VMS3_C_DynamicEcoModel 0 " ECO" 1 " Sport" ;
+VAL_ 3221225472 ETC2_St_TransSelectedGear 124 "R" 125 "N" 126 "1" 127 "2" 128 "3" 129 "4" 130 "5" 131 "6" 132 "7" 133 "8" 134 "9" 135 "10" 136 "11" 137 "12" ;
+VAL_ 3221225472 TCU2_St_ShiftMode 0 " Manual Mode" 1 " Auto Mode" 2 " Reserved" 3 " Error" ;
+VAL_ 3221225472 TCU2_St_EPMode 0 " ECO" 1 " Sport" 2 " Reserved" 3 " Error" ;
+VAL_ 3221225472 TCU2_St_AlarmLightStates 0 " Off" 1 "Rapid flashing" 2 "Slow flashing" 3 "On" ;
+VAL_ 3221225472 TCU2_St_PTO 0 " Not Active" 1 "Active" ;
+VAL_ 3221225472 MCU1_St_MCUReady 0 "Not Ready" 1 "Ready" ;
+VAL_ 3221225472 MCU1_St_ActiveDischargeComplete 0 " Not Completed" 1 " Completed" ;
+VAL_ 3221225472 MCU1_St_MotorEnableCloseRequst 0 "no request" 252 "Request" ;
+VAL_ 3221225472 MCU1_St_Cruise 0 " No Acitve" 1 " Active" ;
+VAL_ 3221225472 MCU3_St_PowerReduceOperation 0 " Normal" 1 " Porwer Reduece" ;
+VAL_ 3221225472 MCU4_St_MCUSelfCheck 0 " Ongoing" 1 " Success" 2 " Fail" 3 " Reserved" ;
+VAL_ 3221225472 MCU4_F_OverVoltageAlarm 0 " Normal" 1 " Error" ;
+VAL_ 3221225472 MCU4_F_UnderVoltageAlarm 0 " Normal" 1 " Error" ;
+VAL_ 3221225472 MCU4_F_OverCurrentAlarm 0 " Normal" 1 " Error" ;
+VAL_ 3221225472 MCU4_T_MCUTempAlarm 0 " Normal" 1 " Error" ;
+VAL_ 3221225472 MCU4_T_MotorTempAlarm 0 " Normal" 1 " Error" ;
+VAL_ 3221225472 MCU4_F_MCUCANAlarm 0 " Normal" 1 " Error" ;
+VAL_ 3221225472 MCU4_F_MCU 0 " Normal" 1 " Error" ;
+VAL_ 2365524719 VMS1_St_Gear 0 "N" 1 "D" 2 "R" 3 "Reserved" ;
+VAL_ 2365524719 VMS1_St_BrakePedalValid 0 "Invalid" 1 "Valid" ;
+VAL_ 2565866755 ETC2_St_TransCurrentGear 124 "R" 125 "N" 126 "1" 127 "2" 128 "3" 129 "4" 130 "5" 131 "6" 132 "7" 133 "8" 134 "9" 135 "10" 136 "11" 137 "12" ;
+VAL_ 2566873603 TCU1_St_MotorCtrlMode 0 "Reserved" 1 "Speed Control Mode" 2 "Torque Control Mode" 3 "Sleep Control Mode" ;
+VAL_ 2365529808 MCU1_St_MCUMode 0 "Reserved" 1 "Speed Control Mode" 2 "Torque Control Mode" 3 " Tracking Mode" ;
+VAL_ 2365529808 MCU1_St_MotorRotationDir 0 " Standstill" 1 " Forward" 2 " Backward" ;
+
