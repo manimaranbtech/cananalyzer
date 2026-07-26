@@ -1,0 +1,531 @@
+import plotly.graph_objects as go
+import plotly.express as px
+import can
+import cantools
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+
+
+# =====================================================
+# USER INPUT
+# =====================================================
+
+dbc_file = "your_database.dbc"
+asc_file = "your_CAN_log.asc"
+
+
+# =====================================================
+# LOAD DBC FILE
+# =====================================================
+
+print("Loading DBC file...")
+
+db = cantools.database.load_file(dbc_file)
+
+print("DBC Loaded Successfully")
+print("Number of Messages:", len(db.messages))
+
+
+
+# =====================================================
+# EXTRACT SIGNAL UNITS FROM DBC
+# =====================================================
+
+signal_units = {}
+
+for message in db.messages:
+
+    for signal in message.signals:
+
+        if signal.unit:
+            signal_units[signal.name] = signal.unit
+        else:
+            signal_units[signal.name] = ""
+
+
+print("Signal units extracted")
+
+
+
+# =====================================================
+# CHECK RAW ASC FILE DURATION
+# =====================================================
+
+print("\nReading raw ASC file information...")
+
+
+raw_reader = can.ASCReader(asc_file)
+
+
+raw_start_time = None
+raw_end_time = None
+
+total_frames = 0
+
+
+
+for msg in raw_reader:
+
+    if raw_start_time is None:
+
+        raw_start_time = msg.timestamp
+
+
+    raw_end_time = msg.timestamp
+
+    total_frames += 1
+
+
+
+raw_duration_sec = raw_end_time - raw_start_time
+
+raw_duration_hr = raw_duration_sec / 3600
+
+
+
+print("\n================================")
+print("RAW ASC FILE INFORMATION")
+print("================================")
+
+print("Total CAN Frames :", total_frames)
+
+print(f"Start Time       : {raw_start_time:.3f} sec")
+
+print(f"End Time         : {raw_end_time:.3f} sec")
+
+print(f"Duration         : {raw_duration_sec:.2f} sec")
+
+print(f"Duration         : {raw_duration_hr:.3f} Hours")
+
+
+
+
+
+# =====================================================
+# DECODE CAN DATA
+# =====================================================
+
+print("\nDecoding CAN messages...")
+
+
+reader = can.ASCReader(asc_file)
+
+
+decoded_data = []
+
+decoded_count = 0
+
+skipped_count = 0
+
+
+
+for msg in reader:
+
+
+    try:
+
+
+        signals = db.decode_message(
+
+            msg.arbitration_id,
+
+            msg.data,
+
+            decode_choices=False
+
+        )
+
+
+        signals["Time_sec"] = (
+
+            msg.timestamp - raw_start_time
+
+        )
+
+
+        decoded_data.append(signals)
+
+
+        decoded_count += 1
+
+
+
+    except Exception:
+
+
+        skipped_count += 1
+
+        continue
+
+
+
+
+
+# =====================================================
+# DECODING SUMMARY
+# =====================================================
+
+print("\n================================")
+print("DECODING INFORMATION")
+print("================================")
+
+
+print("Decoded Frames :", decoded_count)
+
+print("Skipped Frames :", skipped_count)
+
+
+if total_frames > 0:
+
+    coverage = (
+
+        decoded_count /
+
+        total_frames *
+
+        100
+
+    )
+
+else:
+
+    coverage = 0
+
+
+
+print(
+
+    "DBC Coverage   :",
+
+    round(coverage,2),
+
+    "%"
+
+)
+
+
+
+
+
+# =====================================================
+# CREATE DATAFRAME
+# =====================================================
+
+df = pd.DataFrame(decoded_data)
+
+
+
+if df.empty:
+
+    print("No CAN signals decoded")
+
+    exit()
+
+# =====================================================
+# GEAR CALCULATION
+# =====================================================
+
+gear_signal = "ETC2_St_TransCurrentGear"
+torque_signal = "MCU1_N_MotorTorque"
+speed_signal = "MCU1_N_MotorSpeed"
+
+# Check that all required signals exist
+required_signals = [gear_signal, torque_signal, speed_signal]
+
+missing = [sig for sig in required_signals if sig not in df.columns]
+
+if missing:
+    print("\nThe following required signals are missing:")
+    print(missing)
+else:
+
+    # Convert encoded gear to actual gear
+    df["Actual_Gear"] = df[gear_signal] - 125
+    df["Actual_Gear"] = df["Actual_Gear"].ffill()
+
+    # Gear ratio table
+    gear_ratio = {
+        -1: 11.9,   # Reverse
+         0: 0,   # Neutral
+         1: 11.9,
+         2: 7.26,
+         3: 4.44,
+         4: 2.68,
+         5: 1.63,
+         6: 1
+    }
+
+    # Map gear ratio
+    df["Gear_Ratio"] = df["Actual_Gear"].map(gear_ratio)
+    df["Gear_Ratio"] = df["Gear_Ratio"].ffill()
+
+    df["MCU1_N_MotorTorque"] = df["MCU1_N_MotorTorque"].ffill()
+    df["MCU1_N_MotorSpeed"] = df["MCU1_N_MotorSpeed"].ffill()
+
+    # Axle_Input Torque = Motor Torque × Gear Ratio
+    df["Axle_Input_Torque"] = (
+        df[torque_signal] *
+        df["Gear_Ratio"]
+    )
+
+    # Axle_Input Speed = Motor Speed / Gear Ratio
+    df["Axle_Input_Speed"] = 0.0
+
+    valid = df["Gear_Ratio"] > 0
+
+    df.loc[valid, "Axle_Input_Speed"] = (
+        df.loc[valid, speed_signal] /
+        df.loc[valid, "Gear_Ratio"]
+    )
+
+    # Neutral gear
+    df.loc[df["Actual_Gear"] == 0, "Axle_Input_Speed"] = 0
+
+    print("\n================================")
+    print("GEAR CALCULATION COMPLETED")
+    print("================================")
+
+    print(
+        df[
+            [
+                "Time_sec",
+                gear_signal,
+                "Actual_Gear",
+                "Gear_Ratio",
+                torque_signal,
+                "Axle_Input_Torque",
+                speed_signal,
+                "Axle_Input_Speed"
+            ]
+        ].head(20)
+    )
+
+
+
+# =====================================================
+# LIST PARAMETERS
+# =====================================================
+
+parameters = [
+
+    col for col in df.columns
+
+    if col != "Time_sec"
+
+]
+
+
+
+print("\n================================")
+print("MEASURED PARAMETERS")
+print("================================")
+
+
+for i, parameter in enumerate(parameters,1):
+
+
+    unit = signal_units.get(
+
+        parameter,
+
+        ""
+
+    )
+
+
+    print(
+
+        f"{i}. {parameter} ({unit})"
+
+    )
+
+
+
+print("\nTotal Parameters:",
+
+      len(parameters))
+
+
+
+
+
+# =====================================================
+# CREATE PLOT FOLDER
+# =====================================================
+
+plot_folder = "CAN_Plots"
+
+
+if not os.path.exists(plot_folder):
+
+    os.makedirs(plot_folder)
+
+
+
+print("\nPlot folder:", plot_folder)
+
+
+
+# =====================================================
+# INTERACTIVE PLOTLY PLOTS
+# =====================================================
+
+print("\nGenerating interactive plots...")
+
+plot_folder = "CAN_Plots"
+
+if not os.path.exists(plot_folder):
+    os.makedirs(plot_folder)
+
+colors = px.colors.qualitative.Dark24
+
+for i, parameter in enumerate(parameters):
+
+    data = df[["Time_sec", parameter]].dropna()
+
+    # Skip ENUM/Text signals
+    if not pd.api.types.is_numeric_dtype(data[parameter]):
+        print(f"Skipping {parameter} - ENUM/Text signal")
+        continue
+
+    unit = signal_units.get(parameter, "")
+
+    fig = go.Figure()
+
+    fig.add_trace(
+
+        go.Scatter(
+
+            x=data["Time_sec"],
+
+            y=data[parameter],
+
+            mode="lines",
+
+            name=parameter,
+
+            line=dict(
+                color=colors[i % len(colors)],
+                width=2
+            )
+        )
+
+    )
+
+    fig.update_layout(
+
+        title=f"{parameter} vs Time",
+
+        template="plotly_white",
+
+        hovermode="x unified",
+
+        xaxis_title="Time (sec)",
+
+        yaxis_title=f"{parameter} ({unit})" if unit else parameter,
+
+        height=550,
+
+        width=1200,
+
+        xaxis=dict(
+
+            rangeslider=dict(
+
+                visible=True
+
+            ),
+
+            type="linear"
+
+        )
+
+    )
+
+    filename = os.path.join(
+
+        plot_folder,
+
+        parameter.replace("/", "_").replace("\\", "_") + ".html"
+
+    )
+
+    fig.write_html(filename)
+
+    print("Saved:", filename)
+
+    fig.show()
+
+print("\n================================")
+print("Interactive Plot Generation Completed")
+print("================================")
+
+
+
+
+
+
+//////////////////////////////////
+Additional snippet
+/////////////////////////////////
+# =====================================================
+# EXPORT SELECTED PARAMETERS TO CSV
+# =====================================================
+
+print("\n================================")
+print("AVAILABLE PARAMETERS")
+print("================================")
+
+available_parameters = list(df.columns)
+
+for i, param in enumerate(available_parameters, start=1):
+    print(f"{i}. {param}")
+
+print("\nTime_sec will always be included.")
+
+selection = input(
+    "\nEnter parameter numbers separated by commas "
+    "(Example: 3,5,8,12): "
+)
+
+try:
+    selected_index = [
+        int(x.strip()) - 1
+        for x in selection.split(",")
+    ]
+
+    selected_parameters = [
+        available_parameters[i]
+        for i in selected_index
+        if 0 <= i < len(available_parameters)
+    ]
+
+except:
+    print("Invalid selection.")
+    selected_parameters = []
+
+# Always include Time_sec
+export_columns = ["Time_sec"]
+
+for col in selected_parameters:
+    if col != "Time_sec":
+        export_columns.append(col)
+
+export_df = df[export_columns]
+
+csv_name = input(
+    "\nEnter output CSV filename (without extension): "
+)
+
+if csv_name.strip() == "":
+    csv_name = "Selected_CAN_Data"
+
+export_df.to_csv(csv_name + ".csv", index=False)
+
+print("\n================================")
+print("CSV Export Completed")
+print("================================")
+print("Saved as:", csv_name + ".csv")
+print("Columns exported:")
+print(export_columns)
