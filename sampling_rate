@@ -1,0 +1,137 @@
+import pandas as pd
+import numpy as np
+
+# ==========================================================
+# Load CSV File
+# ==========================================================
+file_path = r"your_file.csv"
+
+df = pd.read_csv(file_path)
+
+# ==========================================================
+# Function to check sampling consistency
+# ==========================================================
+def check_sampling(time_series, column_name, tolerance_ms=1):
+    """
+    tolerance_ms = allowable variation in milliseconds
+    """
+
+    # Remove NaN and convert to numeric
+    time = pd.to_numeric(time_series, errors="coerce").dropna().reset_index(drop=True)
+
+    if len(time) < 2:
+        print(f"\n{column_name}: Not enough samples.")
+        return
+
+    # Consecutive time differences
+    dt = np.diff(time)
+
+    mean_dt = np.mean(dt)
+    median_dt = np.median(dt)
+    min_dt = np.min(dt)
+    max_dt = np.max(dt)
+    std_dt = np.std(dt)
+
+    sampling_rate = 1 / mean_dt
+
+    print("\n" + "="*65)
+    print(column_name)
+    print("="*65)
+
+    print(f"Samples               : {len(time)}")
+    print(f"Average dt            : {mean_dt:.6f} s ({mean_dt*1000:.3f} ms)")
+    print(f"Median dt             : {median_dt:.6f} s")
+    print(f"Minimum dt            : {min_dt:.6f} s")
+    print(f"Maximum dt            : {max_dt:.6f} s")
+    print(f"Std deviation         : {std_dt*1000:.3f} ms")
+    print(f"Average Sampling Rate : {sampling_rate:.3f} Hz")
+
+    # Check constant sampling
+    tolerance = tolerance_ms / 1000
+
+    bad = np.sum(np.abs(dt - mean_dt) > tolerance)
+
+    print(f"\nTolerance             : ±{tolerance_ms} ms")
+    print(f"Intervals outside tol : {bad} / {len(dt)}")
+
+    if bad == 0:
+        print("✔ Sampling is effectively CONSTANT.")
+    else:
+        print("✘ Sampling is NOT constant.")
+
+    print(f"Unique dt values      : {len(np.unique(np.round(dt,6)))}")
+
+    # Largest deviation
+    idx = np.argmax(np.abs(dt - mean_dt))
+
+    print("\nLargest deviation")
+    print("-----------------")
+    print(f"Index                : {idx}")
+    print(f"Actual dt            : {dt[idx]:.6f} s")
+    print(f"Deviation            : {(dt[idx]-mean_dt)*1000:.3f} ms")
+
+
+# ==========================================================
+# Column A
+# ==========================================================
+check_sampling(df.iloc[:,0], "Column A")
+
+# ==========================================================
+# Column J
+# ==========================================================
+check_sampling(df.iloc[:,9], "Column J")
+
+
+
+
+///////////////////////////////////////////////////////////
+import pandas as pd
+
+# ==========================================================
+# Load CSV File
+# ==========================================================
+file_path = r"your_file.csv"      # Change to your CSV file
+
+df = pd.read_csv(file_path)
+
+# ==========================================================
+# Function to calculate sampling rate
+# ==========================================================
+def calculate_sampling_rate(time_series, column_name):
+    # Remove empty values and convert to numeric
+    time = pd.to_numeric(time_series, errors='coerce').dropna()
+
+    if len(time) < 2:
+        print(f"\n{column_name}")
+        print("Not enough samples.")
+        return
+
+    first_time = time.iloc[0]
+    last_time = time.iloc[-1]
+    num_samples = len(time)
+    num_intervals = num_samples - 1
+    duration = last_time - first_time
+
+    avg_dt = duration / num_intervals
+    sampling_rate = 1 / avg_dt
+
+    print("=" * 60)
+    print(f"{column_name}")
+    print("=" * 60)
+    print(f"First Timestamp      : {first_time:.6f} s")
+    print(f"Last Timestamp       : {last_time:.6f} s")
+    print(f"Duration             : {duration:.6f} s")
+    print(f"Number of Samples    : {num_samples}")
+    print(f"Number of Intervals  : {num_intervals}")
+    print(f"Avg Sampling Time    : {avg_dt:.6f} s ({avg_dt*1000:.2f} ms)")
+    print(f"Sampling Rate        : {sampling_rate:.3f} Hz")
+
+# ==========================================================
+# Column A
+# ==========================================================
+calculate_sampling_rate(df.iloc[:, 0], "Column A")
+
+# ==========================================================
+# Column J
+# ==========================================================
+calculate_sampling_rate(df.iloc[:, 9], "Column J")
