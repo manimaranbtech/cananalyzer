@@ -8,3 +8,4 @@ can
 cantools
 plotly
 openpyxl
+math
